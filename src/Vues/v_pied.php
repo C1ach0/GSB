@@ -17,12 +17,14 @@
  */
 
 ?>
-        </div>
-		<footer class="footer">
-			<div class="container">
-				<p class="text-muted">© GSB 2026</p>
+        	
 			</div>
-		</footer>
+			<footer class="footer">
+				<div class="container">
+					<p class="text-muted">© GSB 2026</p>
+				</div>
+			</footer>
+		</div>
     </body>
 </html>
 
