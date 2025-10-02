@@ -7,9 +7,17 @@ namespace Composer\Autoload;
 class ComposerStaticInitb61b79819ae9165507c7f3b1ebfa76b0
 {
     public static $prefixLengthsPsr4 = array (
+        'p' => 
+        array (
+            'phpDocumentor\\' => 14,
+        ),
         'S' => 
         array (
             'Sources\\' => 8,
+        ),
+        'P' => 
+        array (
+            'PharIo\\ComposerDistributor\\' => 27,
         ),
         'O' => 
         array (
@@ -26,9 +34,17 @@ class ComposerStaticInitb61b79819ae9165507c7f3b1ebfa76b0
     );
 
     public static $prefixDirsPsr4 = array (
+        'phpDocumentor\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpdocumentor/shim/src',
+        ),
         'Sources\\' => 
         array (
             0 => __DIR__ . '/../..' . '/tests',
+        ),
+        'PharIo\\ComposerDistributor\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phar-io/composer-distributor/src',
         ),
         'Outils\\' => 
         array (
@@ -46,6 +62,20 @@ class ComposerStaticInitb61b79819ae9165507c7f3b1ebfa76b0
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'PharIo\\Executor\\Exception' => __DIR__ . '/..' . '/phar-io/executor/src/ExecutorException.php',
+        'PharIo\\Executor\\Executor' => __DIR__ . '/..' . '/phar-io/executor/src/Executor.php',
+        'PharIo\\Executor\\ExecutorResult' => __DIR__ . '/..' . '/phar-io/executor/src/ExecutorResult.php',
+        'PharIo\\FileSystem\\Directory' => __DIR__ . '/..' . '/phar-io/filesystem/src/Directory.php',
+        'PharIo\\FileSystem\\DirectoryException' => __DIR__ . '/..' . '/phar-io/filesystem/src/DirectoryException.php',
+        'PharIo\\FileSystem\\Exception' => __DIR__ . '/..' . '/phar-io/filesystem/src/Exception.php',
+        'PharIo\\FileSystem\\File' => __DIR__ . '/..' . '/phar-io/filesystem/src/File.php',
+        'PharIo\\FileSystem\\Filename' => __DIR__ . '/..' . '/phar-io/filesystem/src/Filename.php',
+        'PharIo\\FileSystem\\FilenameException' => __DIR__ . '/..' . '/phar-io/filesystem/src/FilenameException.php',
+        'PharIo\\FileSystem\\LastModifiedDate' => __DIR__ . '/..' . '/phar-io/filesystem/src/LastModifiedDate.php',
+        'PharIo\\GnuPG\\ErrorStrings' => __DIR__ . '/..' . '/phar-io/gnupg/src/ErrorStrings.php',
+        'PharIo\\GnuPG\\Exception' => __DIR__ . '/..' . '/phar-io/gnupg/src/Exception.php',
+        'PharIo\\GnuPG\\Factory' => __DIR__ . '/..' . '/phar-io/gnupg/src/Factory.php',
+        'PharIo\\GnuPG\\GnuPG' => __DIR__ . '/..' . '/phar-io/gnupg/src/GnuPG.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

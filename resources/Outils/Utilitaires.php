@@ -106,7 +106,7 @@ abstract class Utilitaires
     /**
      * Indique si une valeur est un entier positif ou nul
      *
-     * @param Integer $valeur Valeur
+     * @param String|Integer $valeur Valeur
      *
      * @return Boolean vrai ou faux
      */
@@ -182,7 +182,7 @@ abstract class Utilitaires
      *
      * @return Boolean vrai ou faux
      */
-    public static function lesQteFraisValides($lesFrais): bool
+    public static function lesQteFraisValides($lesFrais)
     {
         return self::estTableauEntiers($lesFrais);
     }

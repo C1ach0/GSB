@@ -82,26 +82,66 @@ class PdoGsb
         return self::$instance;
     }
 
+    
     /**
-     * Retourne les informations d'un visiteur
+     * Vérifie les informations de connexion d'un visiteur et retourne son ID si valide.
      *
-     * @param String $login Login du visiteur
-     * @param String $mdp   Mot de passe du visiteur
+     * @param string $login Le login du visiteur
+     * @param string $mdp   Le mot de passe du visiteur
      *
-     * @return l'id, le nom et le prénom sous la forme d'un tableau associatif
+     * @return array Un tableau associatif contenant le succès et les données ou un message d'erreur
      */
-    public function getInfosVisiteur($login, $mdp): array
+    public function getIdVisiteur(string $login, string $mdp): array
+    {
+        $requetePrepare = $this->connexion->prepare(
+            'SELECT visiteur.id AS id, visiteur.nom AS nom, '
+            . 'visiteur.prenom AS prenom, visiteur.mdp AS mdp '
+            . 'FROM visiteur '
+            . 'WHERE visiteur.login = :unLogin'
+        );
+        $requetePrepare->bindParam(':unLogin', $login, PDO::PARAM_STR);
+        $requetePrepare->execute();
+        $utilisateur = $requetePrepare->fetch();
+
+        if ($utilisateur === false) {
+            return ["success" => false, "message" => "Utilisateur non trouvé"];
+        } else {
+            if (password_verify($mdp, $utilisateur['mdp'])) {
+                return ["success" => true, "data" => [
+                    "id" => $utilisateur['id'],
+                    "nom" => $utilisateur['nom'],
+                    "prenom" => $utilisateur['prenom']
+                ]];
+            } else {
+                return ["success" => false, "message" => "Mot de passe incorrect"];
+            }
+        }
+    }
+
+    /**
+     * Retourne les informations d'un visiteur à partir de son ID.
+     *
+     * @param string $id L'ID du visiteur
+     *
+     * @return array Un tableau associatif contenant le succès et les données ou un message d'erreur
+     */
+    public function getInfosVisiteur(string $id): array
     {
         $requetePrepare = $this->connexion->prepare(
             'SELECT visiteur.id AS id, visiteur.nom AS nom, '
             . 'visiteur.prenom AS prenom '
             . 'FROM visiteur '
-            . 'WHERE visiteur.login = :unLogin AND visiteur.mdp = :unMdp'
+            . 'WHERE visiteur.id = :unId'
         );
-        $requetePrepare->bindParam(':unLogin', $login, PDO::PARAM_STR);
-        $requetePrepare->bindParam(':unMdp', $mdp, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':unId', $id, PDO::PARAM_STR);
         $requetePrepare->execute();
-        return $requetePrepare->fetch();
+        $value = $requetePrepare->fetch();
+
+        if ($value === false) {
+            return ["success" => false, "message" => "Visiteur non trouvé"];
+        } else {
+            return ["success" => true, "data" => $value];
+        }
     }
 
     /**

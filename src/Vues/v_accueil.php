@@ -22,10 +22,10 @@
 </div>
 <div id="accueil">
     <h2>
-        Gestion des frais<small> - Visiteur : 
-            <?= $_SESSION['prenom'] . ' ' . $_SESSION['nom'] ?></small>
+        Gestion des frais<small> - Visiteur : <?= $_SESSION['prenom'] . ' ' . $_SESSION['nom'] ?></small>
     </h2>
 </div>
+<!-- TODO: faire une version plus propre en mode dashboard de cette page (ce serais mieux pour tout le monde) -->
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-primary">

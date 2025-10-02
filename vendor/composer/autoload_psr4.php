@@ -6,7 +6,9 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'phpDocumentor\\' => array($vendorDir . '/phpdocumentor/shim/src'),
     'Sources\\' => array($baseDir . '/tests'),
+    'PharIo\\ComposerDistributor\\' => array($vendorDir . '/phar-io/composer-distributor/src'),
     'Outils\\' => array($baseDir . '/resources/Outils'),
     'Modeles\\' => array($baseDir . '/src/Modeles'),
     'App\\' => array($baseDir . '/src'),

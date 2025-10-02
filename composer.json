@@ -29,5 +29,13 @@
         "psr-4": {
             "Sources\\": "tests"
         }
+    },
+    "require": {
+        "phpdocumentor/shim": "^3.8"
+    },
+    "config": {
+        "allow-plugins": {
+            "phpdocumentor/shim": true
+        }
     }
 }
