@@ -106,6 +106,7 @@ class PdoGsb
         if ($utilisateur === false) {
             return ["success" => false, "message" => "Utilisateur non trouvé"];
         } else {
+            var_dump($utilisateur);
             if (password_verify($mdp, $utilisateur['mdp'])) {
                 return ["success" => true, "data" => [
                     "id" => $utilisateur['id'],
@@ -142,6 +143,23 @@ class PdoGsb
         } else {
             return ["success" => true, "data" => $value];
         }
+    }
+
+    /**
+     * Retourne le code de vérification à deux facteurs d'un visiteur à partir de son ID.
+     * 
+     * @param String $id ID du visiteur
+     * @return String Le code de vérification à deux facteurs
+     */
+    public function getCodeVisiteur($id) {
+        $requetePrepare = $this->connexion->prepare(
+            'SELECT visiteur.codea2f AS codea2f '
+          . 'FROM visiteur '
+          . 'WHERE visiteur.id = :unId'
+        );
+        $requetePrepare->bindParam(':unId', $id, PDO::PARAM_STR);
+        $requetePrepare->execute();
+        return $requetePrepare->fetch()['codea2f'];
     }
 
     /**
