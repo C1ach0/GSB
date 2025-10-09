@@ -17,35 +17,44 @@
  */
 
 ?>
-<div class="row">    
-    <h2>Renseigner ma fiche de frais du mois 
+<div class="row">
+    <h2 class="my-4">Renseigner ma fiche de frais du mois
         <?php echo $numMois . '-' . $numAnnee ?>
     </h2>
-    <h3>Eléments forfaitisés</h3>
-    <div class="col-md-4">
-        <form method="post" 
-              action="index.php?uc=gererFrais&action=validerMajFraisForfait" 
-              role="form">
-            <fieldset>       
-                <?php
-                foreach ($lesFraisForfait as $unFrais) {
-                    $idFrais = $unFrais['idfrais'];
-                    $libelle = htmlspecialchars($unFrais['libelle']);
-                    $quantite = $unFrais['quantite']; ?>
-                    <div class="form-group">
-                        <label for="idFrais"><?php echo $libelle ?></label>
-                        <input type="text" id="idFrais" 
-                               name="lesFrais[<?php echo $idFrais ?>]"
-                               size="10" maxlength="5" 
-                               value="<?php echo $quantite ?>" 
-                               class="form-control">
-                    </div>
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h3 class="mb-3">Éléments forfaitisés</h3>
+            <div class="col-md-6">
+                <form method="post"
+                    action="index.php?uc=gererFrais&action=validerMajFraisForfait"
+                    role="form" class="needs-validation" novalidate>
                     <?php
-                }
-                ?>
-                <button class="btn btn-success" type="submit">Ajouter</button>
-                <button class="btn btn-danger" type="reset">Effacer</button>
-            </fieldset>
-        </form>
+                    foreach ($lesFraisForfait as $unFrais) {
+                        $idFrais = $unFrais['idfrais'];
+                        $libelle = htmlspecialchars($unFrais['libelle']);
+                        $quantite = $unFrais['quantite']; ?>
+                        <div class="mb-3">
+                            <label for="idFrais_<?php echo $idFrais ?>" class="form-label">
+                                <?php echo $libelle ?>
+                            </label>
+                            <input type="number" id="idFrais_<?php echo $idFrais ?>"
+                                name="lesFrais[<?php echo $idFrais ?>]"
+                                class="form-control"
+                                value="<?php echo $quantite ?>"
+                                required>
+                            <div class="invalid-feedback">
+                                Veuillez renseigner une quantité valide.
+                            </div>
+                        </div>
+                    <?php
+                    }
+                    ?>
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-success" type="submit">Ajouter</button>
+                        <button class="btn btn-secondary" type="reset">Effacer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </div>

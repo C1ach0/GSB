@@ -16,37 +16,34 @@
  */
 
 ?>
-<div class="alert alert-warning" role="alert"><strong>Rappel : </strong>Vos frais sont à déclarer au plus tard le dernier jour du mois 
-	et vos factures acquittées doivent être arrivées aux services comptables au plus tard le 10 du mois suivant la saisie.
-	Les éléments reçus après le 10 seront reportés sur le mois suivant.
+<div class="alert alert-warning" role="alert">
+    <strong>Rappel :</strong> Vos frais sont à déclarer au plus tard le dernier jour du mois 
+    et vos factures acquittées doivent être arrivées aux services comptables au plus tard le 10 du mois suivant la saisie.
+    Les éléments reçus après le 10 seront reportés sur le mois suivant.
 </div>
-<div id="accueil">
+<div id="accueil" class="text-center my-4">
     <h2>
-        Gestion des frais<small> - Visiteur : <?= $_SESSION['prenom'] . ' ' . $_SESSION['nom'] ?></small>
+        Gestion des frais<small class="text-muted"> - Visiteur : <?= htmlspecialchars($_SESSION['prenom'] . ' ' . $_SESSION['nom']) ?></small>
     </h2>
 </div>
-<!-- TODO: faire une version plus propre en mode dashboard de cette page (ce serais mieux pour tout le monde) -->
-<div class="row">
-    <div class="col-md-12">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title">
-                    <span class="glyphicon glyphicon-bookmark"></span>
-                    Navigation
+<div class="row justify-content-center">
+    <div class="col-lg-6">
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <h3 class="card-title mb-0">
+                    <i class="bi bi-bookmark-fill"></i> Navigation
                 </h3>
             </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-xs-12 col-md-12">
-                        <a href="index.php?uc=gererFrais&action=saisirFrais"
-                           class="btn btn-success btn-lg" role="button">
-                            <span class="glyphicon glyphicon-pencil"></span>
-                            <br>Renseigner la fiche de frais</a>
-                        <a href="index.php?uc=etatFrais&action=selectionnerMois"
-                           class="btn btn-primary btn-lg" role="button">
-                            <span class="glyphicon glyphicon-list-alt"></span>
-                            <br>Afficher mes fiches de frais</a>
-                    </div>
+            <div class="card-body">
+                <div class="d-grid gap-3">
+                    <a href="index.php?uc=gererFrais&action=saisirFrais" class="btn btn-success btn-lg">
+                        <i class="bi bi-pencil-fill"></i>
+                        <br>Renseigner la fiche de frais
+                    </a>
+                    <a href="index.php?uc=etatFrais&action=selectionnerMois" class="btn btn-primary btn-lg">
+                        <i class="bi bi-list-ul"></i>
+                        <br>Afficher mes fiches de frais
+                    </a>
                 </div>
             </div>
         </div>

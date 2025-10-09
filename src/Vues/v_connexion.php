@@ -13,27 +13,33 @@
  * @license   Réseau CERTA
  * @version   GIT: <0>
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
- * @link      https://getbootstrap.com/docs/3.3/ Documentation Bootstrap v3
+ * @link      https://getbootstrap.com/docs/5.0/ Documentation Bootstrap v5
  */
 
 ?>
-<div class="container d-flex flex-column justify-content-center align-content-center" style="height: 75vh;">
-    <div class="row justify-content-center">
-        <div class="col-md-6 col-md-offset-3">
-            <div class="card py-5">
+<div class="container d-flex flex-column justify-content-center align-items-center" style="height: 70vh;">
+    <div class="row justify-content-center w-100">
+        <div class="col-lg-4 col-md-6 col-sm-8">
+            <div class="card shadow-lg">
                 <div class="card-body">
-                    <h3 class="card-title text-center mb-3">Identification utilisateur</h3>
+                    <h3 class="card-title text-center mb-4">Connexion</h3>
                     <form method="post" action="index.php?uc=connexion&action=valideConnexion">
-                        <div class="input-group mb-3">
-                            <span class="input-group-text"><i class="bi bi-person"></i></span>
-                            <input class="form-control" placeholder="Login" name="login" type="text" maxlength="45">
+                        <div class="mb-3">
+                            <label for="login" class="form-label">Login</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-person"></i></span>
+                                <input id="login" class="form-control" placeholder="Entrez votre login" name="login" type="text" maxlength="45" required>
+                            </div>
                         </div>
-                        <div class="input-group mb-3">
-                            <span class="input-group-text"><i class="bi bi-lock"></i></span>
-                            <input class="form-control" placeholder="Mot de passe" name="mdp" type="password" maxlength="45">
+                        <div class="mb-3">
+                            <label for="mdp" class="form-label">Mot de passe</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                                <input id="mdp" class="form-control" placeholder="Entrez votre mot de passe" name="mdp" type="password" maxlength="45" required>
+                            </div>
                         </div>
-                        <div class="d-flex justify-content-center align-items-center">
-                            <input class="btn btn-lg btn-success btn-block" type="submit" value="Se connecter">
+                        <div class="d-grid">
+                            <button class="btn btn-primary btn-lg" type="submit">Se connecter</button>
                         </div>
                     </form>
                 </div>
