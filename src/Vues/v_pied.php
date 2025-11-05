@@ -20,7 +20,7 @@
 </main>
 <footer class="footer">
 	<div class="container">
-		<p class="text-muted">© GSB 2026</p>
+		<p class="text-muted">© GSB <?= date('Y') ?></p>
 	</div>
 </footer>
 </div>

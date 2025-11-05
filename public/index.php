@@ -46,6 +46,9 @@ switch ($uc) {
     case 'gererFrais':
         include PATH_CTRLS . 'c_gererFrais.php';
         break;
+    case 'gererVisiteur':
+        include PATH_CTRLS . 'c_gererVisiteur.php';
+        break;
     case 'etatFrais':
         include PATH_CTRLS . 'c_etatFrais.php';
         break;

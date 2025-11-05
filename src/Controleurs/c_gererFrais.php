@@ -54,8 +54,14 @@ switch ($action) {
         $idFrais = filter_input(INPUT_GET, 'idFrais', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $pdo->supprimerFraisHorsForfait($idFrais);
         break;
+    case '':
+        $noDefPages = true;
+        // TODO: recup les datas
+        break;
 }
 $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteur, $mois);
 $lesFraisForfait = $pdo->getLesFraisForfait($idVisiteur, $mois);
-require PATH_VIEWS . 'v_listeFraisForfait.php';
-require PATH_VIEWS . 'v_listeFraisHorsForfait.php';
+if(!$noDefPages) {
+    require PATH_VIEWS . 'v_listeFraisForfait.php';
+    require PATH_VIEWS . 'v_listeFraisHorsForfait.php';
+}

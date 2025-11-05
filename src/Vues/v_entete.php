@@ -46,55 +46,84 @@
 </head>
 
 <body>
-    <?php
-    $uc = filter_input(INPUT_GET, 'uc', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    if ($estConnecte) { ?>
-        <div class="container-fluid">
-            <div class="row">
-                <nav class="col-md-3 col-lg-2 sidebar bg-light p-3">
-                    <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
-                        <span class="fs-5 fw-semibold">GSB</span>
+<?php
+$uc = filter_input(INPUT_GET, 'uc', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+if ($estConnecte) { ?>
+<div class="container-fluid">
+<div class="row">
+<nav class="col-md-3 col-lg-2 sidebar bg-light p-3">
+    <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
+        <span class="fs-5 fw-semibold">GSB</span>
+    </a>
+    <ul class="list-unstyled fw-normal pb-1 small d-flex flex-column gap-2">
+        <li class="nav-item">
+            <a href="/" class="nav-link d-flex align-items-center gap-2 py-2 px-3 rounded 
+            <?php if (!$uc || $uc == 'accueil') {
+                echo 'active bg-primary text-white';
+            } ?>" style="transition: background-color 0.3s, color 0.3s;">
+                <i class="bi bi-house"></i>
+                <span>Accueil</span>
+            </a>
+        </li>
+        <?php if($_SESSION['role'] == 'Directeur' || $_SESSION['role'] == 'Comptable') { ?>
+            <?php if($_SESSION['role'] == 'Directeur') { ?>
+
+            <?php } else if($_SESSION['role'] == 'Comptable') { ?>
+                <li class="nav-item">
+                    <a href="/?uc=gererFrais&action=gestionFrais" class="nav-link d-flex align-items-center gap-2 py-2 px-3 rounded 
+                    <?php if ($uc == 'gererFrais') {
+                        echo 'active bg-primary text-white';
+                    } ?>" style="transition: background-color 0.3s, color 0.3s;">
+                        <i class="bi bi-pencil"></i>
+                        <span>Gestion des fiches de frais</span>
                     </a>
-                    <ul class="list-unstyled fw-normal pb-1 small d-flex flex-column gap-2">
-                        <li class="nav-item">
-                            <a href="/" class="nav-link d-flex align-items-center gap-2 py-2 px-3 rounded <?php if (!$uc || $uc == 'accueil') {
-                                                                                                                echo 'active bg-primary text-white';
-                                                                                                            } ?>" style="transition: background-color 0.3s, color 0.3s;">
-                                <i class="bi bi-house"></i>
-                                <span>Accueil</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/?uc=gererFrais&action=saisirFrais" class="nav-link d-flex align-items-center gap-2 py-2 px-3 rounded <?php if ($uc == 'gererFrais') {
-                                                                                                                                                echo 'active bg-primary text-white';
-                                                                                                                                            } ?>" style="transition: background-color 0.3s, color 0.3s;">
-                                <i class="bi bi-pencil"></i>
-                                <span>Renseigner la fiche de frais</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/?uc=etatFrais&action=selectionnerMois" class="nav-link d-flex align-items-center gap-2 py-2 px-3 rounded <?php if ($uc == 'etatFrais') {
-                                                                                                                                                    echo 'active bg-primary text-white';
-                                                                                                                                                } ?>" style="transition: background-color 0.3s, color 0.3s;">
-                                <i class="bi bi-list"></i>
-                                <span>Afficher mes fiches de frais</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/?uc=deconnexion&action=demandeDeconnexion" class="nav-link d-flex align-items-center gap-2 py-2 px-3 rounded <?php if ($uc == 'deconnexion') {
-                                                                                                                                                        echo 'active bg-primary text-white';
-                                                                                                                                                    } ?>" style="transition: background-color 0.3s, color 0.3s;">
-                                <i class="bi bi-box-arrow-right"></i>
-                                <span>Déconnexion</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-                <main class="col-md-9 col-lg-10 content p-3">
-                <?php } else { ?>
-                    <div class="text-center d-flex flex-column gap-2 align-items-center justify-content-center">
-                        <img src="./images/logo.jpg" class="img-fluid mx-auto" alt="Laboratoire Galaxy-Swiss Bourdin" title="Laboratoire Galaxy-Swiss Bourdin">
-                        <h1>Laboratoire Galaxy-Swiss Bourdin</h1>
-                    </div>
-                <?php } ?>
+                </li>
+            <?php } ?>
+            <li class="nav-item">
+                <a href="/?uc=gererVisiteur" class="nav-link d-flex align-items-center gap-2 py-2 px-3 rounded 
+                <?php if ($uc == 'gererVisiteur') {
+                    echo 'active bg-primary text-white';
+                } ?>" style="transition: background-color 0.3s, color 0.3s;">
+                    <i class="bi bi-people"></i>
+                    <span>Gestion des visiteurs</span>
+                </a>
+            </li>
+        <?php } else { ?>
+            <li class="nav-item">
+                <a href="/?uc=gererFrais&action=saisirFrais" class="nav-link d-flex align-items-center gap-2 py-2 px-3 rounded 
+                <?php if ($uc == 'gererFrais') {
+                    echo 'active bg-primary text-white';
+                } ?>" style="transition: background-color 0.3s, color 0.3s;">
+                    <i class="bi bi-pencil"></i>
+                    <span>Renseigner la fiche de frais</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/?uc=etatFrais&action=selectionnerMois" class="nav-link d-flex align-items-center gap-2 py-2 px-3 rounded 
+                <?php if ($uc == 'etatFrais') {
+                    echo 'active bg-primary text-white';
+                } ?>" style="transition: background-color 0.3s, color 0.3s;">
+                    <i class="bi bi-list"></i>
+                    <span>Afficher mes fiches de frais</span>
+                </a>
+            </li>
+        <?php } ?>
+        <li class="nav-item">
+            <a href="/?uc=deconnexion&action=demandeDeconnexion" class="nav-link d-flex align-items-center gap-2 py-2 px-3 rounded 
+            <?php if ($uc == 'deconnexion') {
+                echo 'active bg-primary text-white';
+            } ?>" style="transition: background-color 0.3s, color 0.3s;">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Déconnexion</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+<main class="col-md-9 col-lg-10 content p-3">
+<?php } else { ?>
+    <div class="text-center d-flex flex-column gap-2 align-items-center justify-content-center">
+        <img src="./images/logo.jpg" class="img-fluid mx-auto" alt="Laboratoire Galaxy-Swiss Bourdin" title="Laboratoire Galaxy-Swiss Bourdin">
+        <h1>Laboratoire Galaxy-Swiss Bourdin</h1>
+    </div>
+<?php } ?>
                 

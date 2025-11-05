@@ -39,13 +39,14 @@ switch ($action) {
             $id = $visiteur['data']['id'];
             $nom = $visiteur['data']['nom'];
             $prenom = $visiteur['data']['prenom'];
+            $role = $visiteur['data']['role'];
             // TODO: envisager dans le futur d'activer la 2FA
             // $email = $visiteur['email'];
             // $code = rand(100000, 999999);
             // $pdo->setCodeA2f($id,$code);
             // mail($email, '[GSB-AppliFrais] Code de vérification', "Code : $code");
             // include PATH_VIEWS . 'v_code2facteurs.php';
-            Utilitaires::connecter($id, $nom, $prenom);
+            Utilitaires::connecter($id, $nom, $prenom, $role);
             header('Location: index.php');
         }
         break;
