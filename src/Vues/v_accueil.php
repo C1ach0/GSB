@@ -31,7 +31,7 @@
 <div class="row justify-content-center">
     <div class="col-lg-6">
         <div class="card shadow-sm">
-            <div class="card-header bg-primary text-white">
+            <div class="card-header text-white bg-<?= $_SESSION['role'] == 'Comptable' ? 'warning' : 'primary' ?>">
                 <h3 class="card-title mb-0">
                     <i class="bi bi-bookmark-fill"></i> Navigation
                 </h3>

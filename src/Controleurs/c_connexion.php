@@ -30,7 +30,6 @@ switch ($action) {
         $login = filter_input(INPUT_POST, 'login', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $mdp = filter_input(INPUT_POST, 'mdp', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $visiteur = $pdo->getIdVisiteur($login, $mdp);
-        var_dump($visiteur);
         if (!is_array($visiteur) || !$visiteur['success']) {
             Utilitaires::ajouterErreur('Login ou mot de passe incorrect');
             include PATH_VIEWS . 'v_erreurs.php';
@@ -40,14 +39,14 @@ switch ($action) {
             $nom = $visiteur['data']['nom'];
             $prenom = $visiteur['data']['prenom'];
             $role = $visiteur['data']['role'];
-            // TODO: envisager dans le futur d'activer la 2FA
-            // $email = $visiteur['email'];
-            // $code = rand(100000, 999999);
-            // $pdo->setCodeA2f($id,$code);
-            // mail($email, '[GSB-AppliFrais] Code de vérification', "Code : $code");
-            // include PATH_VIEWS . 'v_code2facteurs.php';
+            $email = $visiteur['data']['email'];
+            
+            $code = rand(1000, 9999);
+            $pdo->setCodeA2f($id,$code);
+            mail($email, '[GSB-AppliFrais] Code de vérification', "Code : $code");
             Utilitaires::connecter($id, $nom, $prenom, $role);
-            header('Location: index.php');
+            include PATH_VIEWS . 'v_code2facteurs.php';
+            // header('Location: index.php');
         }
         break;
     case 'valideA2fConnexion':

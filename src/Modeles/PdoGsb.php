@@ -94,7 +94,7 @@ class PdoGsb
     public function getIdVisiteur(string $login, string $mdp): array
     {
         $requetePrepare = $this->connexion->prepare(
-            'SELECT visiteur.id AS id, visiteur.nom AS nom, visiteur.prenom AS prenom, visiteur.mdp AS mdp, roles.libelle AS role '
+            'SELECT visiteur.id AS id, visiteur.nom AS nom, visiteur.prenom AS prenom, visiteur.mdp AS mdp, visiteur.email as email, roles.libelle AS role '
                 . 'FROM visiteur '
                 . 'LEFT JOIN visiteur_roles ON visiteur.id = visiteur_roles.visiteur_id '
                 . 'LEFT JOIN roles ON visiteur_roles.role_id = roles.id '
@@ -125,7 +125,7 @@ class PdoGsb
     public function getInfosVisiteur(string $id): array
     {
         $requetePrepare = $this->connexion->prepare(
-            'SELECT visiteur.id AS id, visiteur.nom AS nom, visiteur.prenom AS prenom, roles.libelle AS role '
+            'SELECT visiteur.id AS id, visiteur.nom AS nom, visiteur.prenom AS prenom, visiteur.email as email, roles.libelle AS role '
                 . 'FROM visiteur '
                 . 'LEFT JOIN visiteur_roles ON visiteur.id = visiteur_roles.visiteur_id '
                 . 'LEFT JOIN roles ON visiteur_roles.role_id = roles.id '
@@ -134,9 +134,6 @@ class PdoGsb
         $requetePrepare->bindParam(':unId', $id, PDO::PARAM_STR);
         $requetePrepare->execute();
         $value = $requetePrepare->fetch(PDO::FETCH_ASSOC); // Assurez-vous de récupérer un tableau associatif
-
-        // Débogage temporaire
-        var_dump($value);
 
         if ($value === false) {
             return ["success" => false, "message" => "Visiteur non trouvé ou rôle manquant"];
@@ -151,7 +148,7 @@ class PdoGsb
      * @param String $id ID du visiteur
      * @return String Le code de vérification à deux facteurs
      */
-    public function getCodeVisiteur($id)
+    public function getCodeVisiteur(string $id)
     {
         $requetePrepare = $this->connexion->prepare(
             'SELECT visiteur.codea2f AS codea2f '
@@ -188,6 +185,17 @@ class PdoGsb
         $requetePrepare->execute();
         $result = $requetePrepare->fetch(PDO::FETCH_ASSOC);
         return (int) $result['total'];
+    }
+
+    public function setCodeA2f($id, $code) {
+        $requetePrepare = $this->connexion->prepare(
+            'UPDATE visiteur '
+          . 'SET codea2f = :unCode '
+          . 'WHERE visiteur.id = :unIdVisiteur '
+        );
+        $requetePrepare->bindParam(':unCode', $code, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':unIdVisiteur', $id, PDO::PARAM_STR);
+        $requetePrepare->execute();
     }
 
     /**

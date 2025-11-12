@@ -59,7 +59,7 @@ if ($estConnecte) { ?>
         <li class="nav-item">
             <a href="/" class="nav-link d-flex align-items-center gap-2 py-2 px-3 rounded 
             <?php if (!$uc || $uc == 'accueil') {
-                echo 'active bg-primary text-white';
+                echo "active bg-" . $_SESSION['role'] == "Comptable" ? "warning" : "primary" . " text-white";
             } ?>" style="transition: background-color 0.3s, color 0.3s;">
                 <i class="bi bi-house"></i>
                 <span>Accueil</span>
@@ -72,7 +72,7 @@ if ($estConnecte) { ?>
                 <li class="nav-item">
                     <a href="/?uc=gererFrais&action=gestionFrais" class="nav-link d-flex align-items-center gap-2 py-2 px-3 rounded 
                     <?php if ($uc == 'gererFrais') {
-                        echo 'active bg-primary text-white';
+                        echo "active bg-" . $_SESSION['role'] == "Comptable" ? "warning" : "primary" . " text-white";
                     } ?>" style="transition: background-color 0.3s, color 0.3s;">
                         <i class="bi bi-pencil"></i>
                         <span>Gestion des fiches de frais</span>
@@ -82,7 +82,7 @@ if ($estConnecte) { ?>
             <li class="nav-item">
                 <a href="/?uc=gererVisiteur" class="nav-link d-flex align-items-center gap-2 py-2 px-3 rounded 
                 <?php if ($uc == 'gererVisiteur') {
-                    echo 'active bg-primary text-white';
+                    echo "active bg-" . $_SESSION['role'] == "Comptable" ? "warning" : "primary" . " text-white";
                 } ?>" style="transition: background-color 0.3s, color 0.3s;">
                     <i class="bi bi-people"></i>
                     <span>Gestion des visiteurs</span>
@@ -92,7 +92,7 @@ if ($estConnecte) { ?>
             <li class="nav-item">
                 <a href="/?uc=gererFrais&action=saisirFrais" class="nav-link d-flex align-items-center gap-2 py-2 px-3 rounded 
                 <?php if ($uc == 'gererFrais') {
-                    echo 'active bg-primary text-white';
+                    echo "active bg-" . $_SESSION['role'] == "Comptable" ? "warning" : "primary" . " text-white";
                 } ?>" style="transition: background-color 0.3s, color 0.3s;">
                     <i class="bi bi-pencil"></i>
                     <span>Renseigner la fiche de frais</span>
@@ -101,7 +101,7 @@ if ($estConnecte) { ?>
             <li class="nav-item">
                 <a href="/?uc=etatFrais&action=selectionnerMois" class="nav-link d-flex align-items-center gap-2 py-2 px-3 rounded 
                 <?php if ($uc == 'etatFrais') {
-                    echo 'active bg-primary text-white';
+                    echo "active bg-" . $_SESSION['role'] == "Comptable" ? "warning" : "primary" . " text-white";
                 } ?>" style="transition: background-color 0.3s, color 0.3s;">
                     <i class="bi bi-list"></i>
                     <span>Afficher mes fiches de frais</span>
@@ -111,7 +111,7 @@ if ($estConnecte) { ?>
         <li class="nav-item">
             <a href="/?uc=deconnexion&action=demandeDeconnexion" class="nav-link d-flex align-items-center gap-2 py-2 px-3 rounded 
             <?php if ($uc == 'deconnexion') {
-                echo 'active bg-primary text-white';
+                echo "active bg-" . $_SESSION['role'] == "Comptable" ? "warning" : "primary" . " text-white";
             } ?>" style="transition: background-color 0.3s, color 0.3s;">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Déconnexion</span>
