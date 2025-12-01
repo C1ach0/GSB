@@ -1,0 +1,34 @@
+volumes:
+  db:
+
+services:
+  app:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    volumes:
+      - ./app:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - database
+    command: php -S 0.0.0.0:8000 -t public
+
+  database:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: uwu
+    ports:
+      - "3306:3306"
+    volumes:
+      - db:/var/lib/mysql
+
+  pma:
+    image: beeyev/phpmyadmin-lightweight:latest
+    environment:
+      PMA_ARBITRARY: "1"
+    ports:
+      - "8081:80"
+    depends_on:
+      - database
+    restart: unless-stopped

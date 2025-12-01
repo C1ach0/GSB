@@ -1,0 +1,30 @@
+{
+  "name": "PHP Dev Container",
+  "dockerFile": "Dockerfile",
+  "forwardPorts": [8000],
+  "portsAttributes": {
+    "8000": {
+      "label": "Application",
+      "onAutoForward": "notify"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "bmewburn.vscode-intelephense-client",
+        "xdebug.php-debug",
+        "junstyle.php-cs-fixer",
+        "ms-azuretools.vscode-docker",
+        "editorconfig.editorconfig"
+      ],
+      "settings": {
+        "php.validate.executablePath": "/usr/local/bin/php",
+        "intelephense.environment.phpVersion": "8.3.0"
+      }
+    }
+  },
+  "remoteUser": "vscode",
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {}
+  }
+}

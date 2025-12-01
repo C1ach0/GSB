@@ -41,12 +41,12 @@ switch ($action) {
             $role = $visiteur['data']['role'];
             $email = $visiteur['data']['email'];
             
-            $code = rand(1000, 9999);
-            $pdo->setCodeA2f($id,$code);
-            mail($email, '[GSB-AppliFrais] Code de vérification', "Code : $code");
+            // $code = rand(1000, 9999);
+            // $pdo->setCodeA2f($id,$code);
+            // mail($email, '[GSB-AppliFrais] Code de vérification', "Code : $code");
             Utilitaires::connecter($id, $nom, $prenom, $role);
-            include PATH_VIEWS . 'v_code2facteurs.php';
-            // header('Location: index.php');
+            // include PATH_VIEWS . 'v_code2facteurs.php';
+            header('Location: index.php');
         }
         break;
     case 'valideA2fConnexion':

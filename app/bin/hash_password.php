@@ -1,9 +1,8 @@
 <?php
 
-define('SALT', "ch@ineDeC@ractèresAlé@toires"); // Ce sel n'est pas utilisé avec password_hash
-define('DB_URL', "localhost");
-define('DB_USER', "userGsb");
-define('DB_PWD', "secret");
+define('DB_URL', "database");
+define('DB_USER', "root");
+define('DB_PWD', "uwu");
 define('DB_NAME', "gsb_frais");
 define('DB_DSN', "mysql:host=" . DB_URL . ";dbname=" . DB_NAME . ";charset=UTF8");
 

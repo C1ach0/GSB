@@ -28,3 +28,8 @@ INSERT INTO visiteur_roles (visiteur_id, role_id)
     SELECT id, (SELECT id FROM roles WHERE libelle = 'Visiteur')
     FROM visiteur
 ON DUPLICATE KEY UPDATE role_id = role_id;
+
+ALTER TABLE visiteur ADD email TEXT NULL;
+UPDATE visiteur SET email = CONCAT(login,"@swiss-galaxy.com");
+
+ALTER TABLE visiteur ADD codea2f CHAR(6);
